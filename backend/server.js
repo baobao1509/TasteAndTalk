@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 const envResult = dotenv.config();
 
 import express from "express";
+import cors from "cors";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -35,6 +36,7 @@ async function startServer() {
   }
 
   // Middleware
+  app.use(cors());
   app.use(express.json());
 
   // API Routes

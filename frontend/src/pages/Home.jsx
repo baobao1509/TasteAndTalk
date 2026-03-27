@@ -12,7 +12,8 @@ export default function Home() {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch('/api/tours');
+        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const response = await fetch(`${apiUrl}/api/tours`);
         const data = await response.json();
         setTours(data);
       } catch (error) {

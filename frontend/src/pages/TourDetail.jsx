@@ -23,7 +23,8 @@ export default function TourDetail() {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const response = await fetch(`/api/tours/${id}`);
+        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const response = await fetch(`${apiUrl}/api/tours/${id}`);
         if (!response.ok) throw new Error('Tour not found');
         const data = await response.json();
         setTour(data);
