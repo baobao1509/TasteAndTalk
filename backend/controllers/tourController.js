@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Tour from "../models/Tour.js";
+import { promises } from "dns";
 
 // @desc    Get all tours
 // @route   GET /api/tours
