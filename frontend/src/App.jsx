@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import TourDetail from './pages/TourDetail';
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 
-const GOOGLE_MAPS_KEY = process.env.GOOGLE_MAPS_PLATFORM_KEY || '';
+const GOOGLE_MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY || import.meta.env.GOOGLE_MAPS_PLATFORM_KEY || '';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

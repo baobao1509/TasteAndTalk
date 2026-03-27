@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import Tour from "../models/Tour.js";
-import { promises } from "dns";
 
 // @desc    Get all tours
 // @route   GET /api/tours
@@ -72,10 +71,21 @@ export const getTours = async (req, res) => {
 // @access  Public
 export const getTourById = async (req, res) => {
   try {
-    const tour = await Tour.findOne({ id: req.params.id });
+    const { id } = req.params;
+    let tour = null;
+    
+    // Try finding by custom id string first
+    tour = await Tour.findOne({ id: id });
+    
+    // If not found and id is a valid MongoDB ObjectId, try finding by _id
+    if (!tour && mongoose.Types.ObjectId.isValid(id)) {
+      tour = await Tour.findById(id);
+    }
+    
     if (!tour) return res.status(404).json({ error: "Tour not found" });
     res.json(tour);
   } catch (err) {
+    console.error("Get Tour By ID Error:", err);
     res.status(500).json({ error: "Failed to fetch tour" });
   }
 };
