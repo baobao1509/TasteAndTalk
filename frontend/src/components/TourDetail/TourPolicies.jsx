@@ -23,7 +23,11 @@ const AccordionItem = ({ title, icon: Icon, children, isOpen, onClick, colorClas
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ 
+              height: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+            layout
           >
             <div className="p-6 pt-0 border-t border-black/5 bg-black/[0.01]">
               <div className="text-brand-brown/80 leading-relaxed font-medium">

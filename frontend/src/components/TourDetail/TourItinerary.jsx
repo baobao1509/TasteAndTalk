@@ -43,8 +43,12 @@ export default function TourItinerary({ itinerary, openAccordion, setOpenAccordi
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ 
+                      height: { type: "spring", stiffness: 300, damping: 30 },
+                      opacity: { duration: 0.2 }
+                    }}
                     className="overflow-hidden"
+                    layout
                   >
                     <div className="pt-4 pb-2 space-y-4">
                       <div className="bg-brand-yellow/5 p-6 rounded-2xl border border-brand-yellow/10">

@@ -94,6 +94,10 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ 
+              height: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
             className="absolute top-full left-0 right-0 bg-white shadow-2xl overflow-hidden md:hidden rounded-b-[2.5rem]"
           >
             <div className="p-8 flex flex-col gap-8">
