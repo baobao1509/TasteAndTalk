@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'motion/react';
 import { Star, Send } from 'lucide-react';
 import GoogleReviews from '../components/GoogleReviews';
+import TrustindexBadge from '../components/TrustindexBadge';
 import TourHero from '../components/TourDetail/TourHero';
 import TourOverview from '../components/TourDetail/TourOverview';
 import FoodItems from '../components/TourDetail/FoodItems';
@@ -115,25 +116,16 @@ export default function TourDetail() {
               </div>
               <p className="text-brand-brown/60">What our guests are saying about this tour</p>
             </div>
-            <div className="flex items-center gap-4 bg-white px-6 py-4 rounded-2xl shadow-sm border border-black/5">
-              <div>
-                <div className="flex items-center gap-1 text-brand-yellow">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-current" />)}
-                </div>
-              </div>
-              <div className="w-px h-10 bg-black/5" />
-              <div className="flex items-center gap-2">
-                <span className="text-3xl font-display font-bold text-brand-brown">4.9</span>
-                <span className="text-brand-brown/40 text-sm">/ 5</span>
-              </div>
+            <div className="flex items-center justify-center">
+              <TrustindexBadge />
             </div>
           </div>
           
-          <GoogleReviews placeId="ChIJ-yncs6K8sScRdwRAcb2K35k" />
+          <GoogleReviews placeId="ChIJaX_6666666666666666" />
           
           <div className="mt-12 text-center">
             <a 
-              href="https://www.google.com/maps/search/?api=1&query=Taste&Talk+Saigon" 
+              href="https://www.google.com/maps" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-brand-brown/60 hover:text-brand-orange font-bold text-sm transition-colors"
@@ -151,6 +143,7 @@ export default function TourDetail() {
             initial={{ opacity: 0, scale: 0.5, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 100 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-8 right-8 z-40 lg:hidden"
           >
             <motion.a

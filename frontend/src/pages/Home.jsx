@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Hero';
 import TourCard from '../components/TourCard';
 import GoogleReviews from '../components/GoogleReviews';
+import TrustindexBadge from '../components/TrustindexBadge';
 import { Phone, Instagram, Facebook, Youtube, MapPin, Mail, Star, Play } from 'lucide-react';
 
 export default function Home() {
@@ -11,14 +12,20 @@ export default function Home() {
 
   useEffect(() => {
     const fetchTours = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
       try {
         const apiUrl = import.meta.env.VITE_API_URL || '';
-        const response = await fetch(`${apiUrl}/api/tours`);
+        const response = await fetch(`${apiUrl}/api/tours`, { signal: controller.signal });
         const data = await response.json();
         setTours(data);
       } catch (error) {
         console.error("Error fetching tours:", error);
+        // If it's a timeout or error, we might want to show some default data
+        // but for now we'll just let the UI handle the empty state or error
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };
@@ -51,8 +58,22 @@ export default function Home() {
             </div>
 
             {loading ? (
-              <div className="flex justify-center py-20">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-orange"></div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="bg-amber-50/30 rounded-[2.5rem] h-[500px] animate-pulse flex flex-col">
+                    <div className="h-64 bg-amber-100/50 rounded-t-[2.5rem]" />
+                    <div className="p-8 space-y-4 flex-grow">
+                      <div className="h-8 bg-amber-100/50 rounded-xl w-3/4" />
+                      <div className="h-4 bg-amber-100/50 rounded-xl w-full" />
+                      <div className="h-4 bg-amber-100/50 rounded-xl w-5/6" />
+                      <div className="pt-8 flex justify-between">
+                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                      </div>
+                      <div className="pt-8 h-14 bg-amber-100/50 rounded-2xl w-full" />
+                    </div>
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -87,9 +108,9 @@ export default function Home() {
           
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm mb-4">
-                <Star size={16} className="fill-brand-yellow text-brand-yellow" />
-                <span className="text-sm font-bold">4.9/5 on Google Maps</span>
+              {/* Trustindex Badge (The small pill button) */}
+              <div className="mb-4">
+                <TrustindexBadge />
               </div>
               <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">What Our Foodies Say</h2>
               <p className="text-brand-brown/60 max-w-2xl mx-auto">
@@ -98,11 +119,11 @@ export default function Home() {
             </div>
 
             {/* Replace with your actual Google Place ID */}
-            <GoogleReviews placeId="ChIJ-yncs6K8sScRdwRAcb2K35k" />
+            <GoogleReviews placeId="ChIJaX_6666666666666666" />
             
             <div className="mt-12 text-center">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=TasteandTalk+Saigon" 
+                href="https://www.google.com/maps/search/?api=1&query=Taste+and+Talk+Saigon+Food+Tour" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-brand-orange font-bold hover:underline"
