@@ -98,11 +98,11 @@ export default function Home() {
             </div>
 
             {/* Replace with your actual Google Place ID */}
-            <GoogleReviews placeId="ChIJaX_6666666666666666" />
+            <GoogleReviews placeId="ChIJ-yncs6K8sScRdwRAcb2K35k" />
             
             <div className="mt-12 text-center">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=Taste+and+Talk+Saigon+Food+Tour" 
+                href="https://www.google.com/maps/search/?api=1&query=TasteandTalk+Saigon" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-brand-orange font-bold hover:underline"

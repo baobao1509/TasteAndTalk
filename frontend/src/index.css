@@ -26,3 +26,10 @@
 .rounded-section {
   @apply rounded-[2rem] md:rounded-[3rem];
 }
+
+/* Hide Trustindex filter text and footer elements */
+.ti-widget .ti-filter-text,
+.ti-widget .ti-footer,
+.ti-widget .ti-filter-container {
+  display: none !important;
+}

@@ -129,11 +129,11 @@ export default function TourDetail() {
             </div>
           </div>
           
-          <GoogleReviews placeId="ChIJaX_6666666666666666" />
+          <GoogleReviews placeId="ChIJ-yncs6K8sScRdwRAcb2K35k" />
           
           <div className="mt-12 text-center">
             <a 
-              href="https://www.google.com/maps" 
+              href="https://www.google.com/maps/search/?api=1&query=Taste&Talk+Saigon" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-brand-brown/60 hover:text-brand-orange font-bold text-sm transition-colors"
