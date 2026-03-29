@@ -59,6 +59,18 @@ export default function TourDetail() {
     };
   }, [loading, tour]);
 
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1024;
+    if (showFloatingBtn && isMobile) {
+      document.documentElement.style.setProperty('--floating-social-offset', '80px');
+    } else {
+      document.documentElement.style.setProperty('--floating-social-offset', '0px');
+    }
+    return () => {
+      document.documentElement.style.setProperty('--floating-social-offset', '0px');
+    };
+  }, [showFloatingBtn]);
+
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-orange"></div>

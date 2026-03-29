@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --floating-social-offset: 0px;
+}
+
 @theme {
   --color-brand-yellow: #FFD200;
   --color-brand-orange: #E67E22;

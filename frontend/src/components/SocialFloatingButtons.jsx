@@ -33,17 +33,20 @@ const SocialButton = ({ icon: Icon, href, color, delay = 0 }) => {
 
 export default function SocialFloatingButtons() {
   return (
-    <div className="fixed bottom-8 md:bottom-28 right-8 z-40 flex flex-col gap-4 pointer-events-none">
+    <div 
+      className="fixed bottom-8 md:bottom-28 right-8 z-40 flex flex-col gap-4 pointer-events-none transition-all duration-300"
+      style={{ transform: `translateY(calc(-1 * var(--floating-social-offset, 0px)))` }}
+    >
       <div className="pointer-events-auto flex flex-col gap-4">
         <SocialButton 
           icon={MessageCircle} 
-          href="https://wa.me/84858207201" 
+          href="https://wa.me/84123456789" 
           color="bg-green-500 shadow-green-500/30" 
           delay={0.1}
         />
         <SocialButton 
           icon={Instagram} 
-          href="https://www.instagram.com/tntsaigon.foodtour/" 
+          href="https://instagram.com/tasteandtalksaigon" 
           color="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 shadow-purple-500/30" 
           delay={0.2}
         />
