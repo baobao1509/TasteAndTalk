@@ -4,7 +4,7 @@ import { ArrowRight, Star, MapPin } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-24 pb-32 px-4 overflow-hidden">
+    <section className="relative min-h-screen min-h-[100dvh] flex items-center pt-24 pb-32 px-4 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -33,7 +33,7 @@ export default function Hero() {
               Join us for an unforgettable journey through the hidden alleys and vibrant markets of Ho Chi Minh City. Authentic flavors, local stories, and memories that last a lifetime.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-20 md:mt-0">
               <button 
                 onClick={() => document.getElementById('tours')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-brand-orange text-white px-10 sm:px-12 py-5 sm:py-6 rounded-2xl font-bold text-xl sm:text-2xl hover:scale-105 active:scale-95 transition-transform shadow-2xl shadow-brand-orange/40 flex items-center gap-3"
@@ -67,8 +67,8 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Bottom fade to content */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/80 to-transparent z-10"></div>
+      {/* Bottom fade to content - shorter and lower */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/40 to-transparent z-10"></div>
     </section>
   );
 }

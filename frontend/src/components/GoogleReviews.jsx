@@ -143,7 +143,7 @@ export default function GoogleReviews() {
       
       // Create the script element
       const script = document.createElement('script');
-      script.src = 'https://cdn.trustindex.io/loader.js?e68dc0768d8434188b766e3a326';
+      script.src = 'https://cdn.trustindex.io/loader.js?b9db11668d05341ddf567f27e9e';
       script.async = true;
       script.defer = true;
       
@@ -153,7 +153,7 @@ export default function GoogleReviews() {
   }, []);
 
   return (
-    <div className="py-8">
+    <div className="pb-8">
       {/* Trustindex Widget Container */}
       {/* We use a ref to target this specific div and inject the script inside it */}
       <div 
@@ -170,5 +170,4 @@ export default function GoogleReviews() {
     </div>
   );
 }
-
 

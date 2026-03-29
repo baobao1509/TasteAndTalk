@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import Hero from '../components/Hero';
 import TourCard from '../components/TourCard';
 import GoogleReviews from '../components/GoogleReviews';
@@ -40,14 +44,50 @@ export default function Home() {
         <meta name="description" content="Experience the best street food in Saigon with local guides. Join Taste & Talk Saigon for authentic culinary adventures, hidden gems, and real stories of Vietnam." />
         <meta name="keywords" content="saigon street food tour, ho chi minh city food tour, authentic vietnamese food, local foodie friends, taste and talk saigon" />
         <link rel="canonical" href="https://tntsaigonfoodtour.com" />
+        
+        {/* Structured Data for Sitelinks and Brand */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Taste & Talk Saigon",
+              "url": "https://tntsaigonfoodtour.com",
+              "logo": "https://tntsaigonfoodtour.com/logo.png",
+              "sameAs": [
+                "https://www.facebook.com/tntsaigonfoodtour",
+                "https://www.instagram.com/tntsaigonfoodtour"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+84-123-456-789",
+                "contactType": "customer service"
+              }
+            }
+          `}
+        </script>
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://tntsaigonfoodtour.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://tntsaigonfoodtour.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          `}
+        </script>
       </Helmet>
       <main>
         <Hero />
 
         {/* Featured Tours Section */}
-        <section id="tours" className="py-24 px-4 bg-white rounded-section">
+        <section id="tours" className="py-12 px-4 bg-white rounded-section">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
               <div>
                 <span className="text-brand-orange font-bold tracking-widest uppercase text-sm">Our Experiences</span>
                 <h2 className="text-4xl md:text-5xl font-display font-bold mt-2">Most Popular Food Tours</h2>
@@ -58,39 +98,70 @@ export default function Home() {
             </div>
 
             {loading ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Swiper
+                modules={[Pagination]}
+                spaceBetween={20}
+                slidesPerView={1.2}
+                pagination={{ clickable: true }}
+                breakpoints={{
+                  640: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 3, spaceBetween: 30 },
+                }}
+                className="pb-12"
+              >
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} className="bg-amber-50/30 rounded-[2.5rem] h-[500px] animate-pulse flex flex-col">
-                    <div className="h-64 bg-amber-100/50 rounded-t-[2.5rem]" />
-                    <div className="p-8 space-y-4 flex-grow">
-                      <div className="h-8 bg-amber-100/50 rounded-xl w-3/4" />
-                      <div className="h-4 bg-amber-100/50 rounded-xl w-full" />
-                      <div className="h-4 bg-amber-100/50 rounded-xl w-5/6" />
-                      <div className="pt-8 flex justify-between">
-                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
-                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                  <SwiperSlide key={i}>
+                    <div className="bg-amber-50/30 rounded-[2.5rem] h-[500px] animate-pulse flex flex-col">
+                      <div className="h-64 bg-amber-100/50 rounded-t-[2.5rem]" />
+                      <div className="p-8 space-y-4 flex-grow">
+                        <div className="h-8 bg-amber-100/50 rounded-xl w-3/4" />
+                        <div className="h-4 bg-amber-100/50 rounded-xl w-full" />
+                        <div className="h-4 bg-amber-100/50 rounded-xl w-5/6" />
+                        <div className="pt-8 flex justify-between">
+                          <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                          <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                        </div>
+                        <div className="pt-8 h-14 bg-amber-100/50 rounded-2xl w-full" />
                       </div>
-                      <div className="pt-8 h-14 bg-amber-100/50 rounded-2xl w-full" />
                     </div>
-                  </div>
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Array.isArray(tours) ? (
-                  tours.map((tour) => (
-                    <TourCard 
-                      key={tour.id || tour._id} 
-                      id={tour.id || tour._id}
-                      title={tour.title}
-                      price={tour.price}
-                      duration={tour.duration}
-                      groupSize={tour.groupSize}
-                      image={tour.heroImage || tour.image}
-                      rating={tour.rating}
-                      description={tour.description}
-                    />
-                  ))
+              <div className="relative">
+                {Array.isArray(tours) && tours.length > 0 ? (
+                  <Swiper
+                    modules={[Pagination, Autoplay]}
+                    spaceBetween={20}
+                    slidesPerView={1.2}
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                      640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                      },
+                      1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                      },
+                    }}
+                    className="pb-12"
+                  >
+                    {tours.map((tour) => (
+                      <SwiperSlide key={tour.id || tour._id} className="h-auto">
+                        <TourCard 
+                          id={tour.id || tour._id}
+                          title={tour.title}
+                          price={tour.price}
+                          duration={tour.duration}
+                          groupSize={tour.groupSize}
+                          image={tour.heroImage || tour.image}
+                          rating={tour.rating}
+                          description={tour.description}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 ) : (
                   <div className="col-span-full text-center py-10 bg-red-50 rounded-xl">
                     <p className="text-red-500 font-bold">Không thể tải danh sách tour. Vui lòng kiểm tra cấu hình Database.</p>
@@ -102,18 +173,18 @@ export default function Home() {
         </section>
 
         {/* Google Reviews Section */}
-        <section id="reviews" className="relative pt-32 pb-24 px-4 bg-brand-yellow/5">
+        <section id="reviews" className="relative pt-16 pb-16 px-4 bg-brand-yellow/5">
           {/* Soft Gradient Transition from White to Yellow */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
           
           <div className="max-w-7xl mx-auto relative z-10">
-            <div className="text-center mb-16">
+            <div className="text-center mb-1">
               {/* Trustindex Badge (The small pill button) */}
-              <div className="mb-4">
+              <div className="mb-1">
                 <TrustindexBadge />
               </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">What Our Foodies Say</h2>
-              <p className="text-brand-brown/60 max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-2">What Our Foodies Say</h2>
+              <p className="text-brand-brown/60 max-w-2xl mx-auto text-sm md:text-base">
                 Real feedback from travelers who have explored the streets of Saigon with us.
               </p>
             </div>
@@ -135,8 +206,8 @@ export default function Home() {
         </section>
 
         {/* About / Who We Are Section */}
-        <section id="about" className="py-24 px-4">
-          <div className="max-w-7xl mx-auto bg-brand-dark text-white rounded-section p-8 md:p-20 relative overflow-hidden">
+        <section id="about" className="py-6 px-4">
+          <div className="max-w-7xl mx-auto bg-brand-dark text-white rounded-section p-6 md:p-10 relative overflow-hidden">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                   <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">
@@ -185,10 +256,10 @@ export default function Home() {
         </section>
 
         {/* Call to Action / WhatsApp */}
-        <section className="py-24 px-4 text-center">
+        <section className="py-6 px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-display font-bold mb-6">Have Questions? Chat with Us!</h2>
-            <p className="text-brand-brown/60 mb-10 text-lg">
+            <h2 className="text-4xl font-display font-bold mb-2">Have Questions? Chat with Us!</h2>
+            <p className="text-brand-brown/60 mb-6 text-lg">
               We're here to help you plan the perfect food adventure. Message us on WhatsApp for instant support.
             </p>
             <a 

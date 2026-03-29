@@ -34,9 +34,9 @@ export default function App() {
 
             <SocialFloatingButtons />
 
-            <footer className="bg-white border-t border-black/5 py-16 px-4">
-              <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-                <div className="col-span-2">
+            <footer className="bg-white border-t border-black/5 py-12 px-4">
+              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="md:col-span-2">
                   <div className="flex items-center gap-2 mb-6">
                     <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center">
                       <img 
@@ -67,13 +67,13 @@ export default function App() {
                   </ul>
                 </div>
 
-                <div>
+                <div className="col-span-full md:col-span-1">
                   <h4 className="font-bold mb-6">Quick Links</h4>
-                  <ul className="space-y-4 text-brand-brown/70">
-                    <li><a href="#" className="hover:text-brand-orange transition-colors">Terms of Service</a></li>
-                    <li><a href="#" className="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
-                    <li><a href="#reviews" className="hover:text-brand-orange transition-colors">Google Reviews</a></li>
-                    <li><a href="#" className="hover:text-brand-orange transition-colors">FAQs</a></li>
+                  <ul className="flex flex-row flex-wrap gap-x-8 gap-y-4 md:flex-col md:space-y-4 text-brand-brown/70 text-sm md:text-base">
+                    <li><a href="#" className="hover:text-brand-orange transition-colors whitespace-nowrap">Terms of Service</a></li>
+                    <li><a href="#" className="hover:text-brand-orange transition-colors whitespace-nowrap">Privacy Policy</a></li>
+                    <li><a href="#reviews" className="hover:text-brand-orange transition-colors whitespace-nowrap">Google Reviews</a></li>
+                    <li><a href="#" className="hover:text-brand-orange transition-colors whitespace-nowrap">FAQs</a></li>
                   </ul>
                 </div>
               </div>

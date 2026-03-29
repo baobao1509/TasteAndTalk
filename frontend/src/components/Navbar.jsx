@@ -48,7 +48,7 @@ export default function Navbar() {
           <span className={`font-display font-bold text-base xs:text-lg sm:text-2xl transition-colors ${
             isScrolled ? 'text-brand-brown' : 'text-white'
           }`}>
-            Taste & Talk <span className="text-brand-orange">Saigon</span>
+            Taste&Talk <span className="text-brand-orange">Saigon</span>
           </span>
         </Link>
 

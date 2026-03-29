@@ -28,8 +28,26 @@
 }
 
 /* Hide Trustindex filter text and footer elements */
+/* Swiper Pagination Customization */
+.swiper-pagination-bullet-active {
+  background: var(--color-brand-orange) !important;
+}
+
 .ti-widget .ti-filter-text,
 .ti-widget .ti-footer,
-.ti-widget .ti-filter-container {
+.ti-widget .ti-filter-container,
+.ti-widget [class*="filter"],
+.ti-widget [class*="footer"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* If it's an iframe, we try to clip the bottom */
+.ti-widget {
+  overflow: hidden !important;
+  max-height: 550px; /* Giới hạn chiều cao để cắt phần chân trang */
 }

@@ -33,26 +33,26 @@ const SocialButton = ({ icon: Icon, href, color, delay = 0 }) => {
 
 export default function SocialFloatingButtons() {
   return (
-    <div className="fixed bottom-28 right-8 z-40 flex flex-col gap-4 pointer-events-none">
+    <div className="fixed bottom-8 md:bottom-28 right-8 z-40 flex flex-col gap-4 pointer-events-none">
       <div className="pointer-events-auto flex flex-col gap-4">
         <SocialButton 
           icon={MessageCircle} 
-          href="https://wa.me/84123456789" 
+          href="https://wa.me/84858207201" 
           color="bg-green-500 shadow-green-500/30" 
           delay={0.1}
         />
         <SocialButton 
           icon={Instagram} 
-          href="https://instagram.com/tasteandtalksaigon" 
+          href="https://www.instagram.com/tntsaigon.foodtour/" 
           color="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 shadow-purple-500/30" 
           delay={0.2}
         />
-        <SocialButton 
+        {/* <SocialButton 
           icon={Music2} 
           href="https://tiktok.com/@tasteandtalksaigon" 
           color="bg-black shadow-black/30" 
           delay={0.3}
-        />
+        /> */}
       </div>
     </div>
   );
