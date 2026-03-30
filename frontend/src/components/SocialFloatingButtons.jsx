@@ -40,13 +40,13 @@ export default function SocialFloatingButtons() {
       <div className="pointer-events-auto flex flex-col gap-4">
         <SocialButton 
           icon={MessageCircle} 
-          href="https://wa.me/84123456789" 
+          href="https://wa.me/84858207201" 
           color="bg-green-500 shadow-green-500/30" 
           delay={0.1}
         />
         <SocialButton 
           icon={Instagram} 
-          href="https://instagram.com/tasteandtalksaigon" 
+          href="https://www.instagram.com/tntsaigon.foodtour?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
           color="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 shadow-purple-500/30" 
           delay={0.2}
         />
