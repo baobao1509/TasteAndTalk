@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import Hero from '../components/Hero';
 import TourCard from '../components/TourCard';
 import GoogleReviews from '../components/GoogleReviews';
@@ -98,70 +94,41 @@ export default function Home() {
             </div>
 
             {loading ? (
-              <Swiper
-                modules={[Pagination]}
-                spaceBetween={20}
-                slidesPerView={1.2}
-                pagination={{ clickable: true }}
-                breakpoints={{
-                  640: { slidesPerView: 2, spaceBetween: 20 },
-                  1024: { slidesPerView: 3, spaceBetween: 30 },
-                }}
-                className="pb-12"
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
                 {[...Array(3)].map((_, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="bg-amber-50/30 rounded-[2.5rem] h-[500px] animate-pulse flex flex-col">
-                      <div className="h-64 bg-amber-100/50 rounded-t-[2.5rem]" />
-                      <div className="p-8 space-y-4 flex-grow">
-                        <div className="h-8 bg-amber-100/50 rounded-xl w-3/4" />
-                        <div className="h-4 bg-amber-100/50 rounded-xl w-full" />
-                        <div className="h-4 bg-amber-100/50 rounded-xl w-5/6" />
-                        <div className="pt-8 flex justify-between">
-                          <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
-                          <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
-                        </div>
-                        <div className="pt-8 h-14 bg-amber-100/50 rounded-2xl w-full" />
+                  <div key={i} className="bg-amber-50/30 rounded-[2.5rem] h-[500px] animate-pulse flex flex-col">
+                    <div className="h-64 bg-amber-100/50 rounded-t-[2.5rem]" />
+                    <div className="p-8 space-y-4 flex-grow">
+                      <div className="h-8 bg-amber-100/50 rounded-xl w-3/4" />
+                      <div className="h-4 bg-amber-100/50 rounded-xl w-full" />
+                      <div className="h-4 bg-amber-100/50 rounded-xl w-5/6" />
+                      <div className="pt-8 flex justify-between">
+                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
+                        <div className="h-6 bg-amber-100/50 rounded-lg w-20" />
                       </div>
+                      <div className="pt-8 h-14 bg-amber-100/50 rounded-2xl w-full" />
                     </div>
-                  </SwiperSlide>
+                  </div>
                 ))}
-              </Swiper>
+              </div>
             ) : (
               <div className="relative">
                 {Array.isArray(tours) && tours.length > 0 ? (
-                  <Swiper
-                    modules={[Pagination, Autoplay]}
-                    spaceBetween={20}
-                    slidesPerView={1.2}
-                    pagination={{ clickable: true }}
-                    breakpoints={{
-                      640: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                      },
-                      1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                      },
-                    }}
-                    className="pb-12"
-                  >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
                     {tours.map((tour) => (
-                      <SwiperSlide key={tour.id || tour._id} className="h-auto">
-                        <TourCard 
-                          id={tour.id || tour._id}
-                          title={tour.title}
-                          price={tour.price}
-                          duration={tour.duration}
-                          groupSize={tour.groupSize}
-                          image={tour.heroImage || tour.image}
-                          rating={tour.rating}
-                          description={tour.description}
-                        />
-                      </SwiperSlide>
+                      <TourCard 
+                        key={tour.id || tour._id}
+                        id={tour.id || tour._id}
+                        title={tour.title}
+                        price={tour.price}
+                        duration={tour.duration}
+                        groupSize={tour.groupSize}
+                        image={tour.heroImage || tour.image}
+                        rating={tour.rating}
+                        description={tour.description}
+                      />
                     ))}
-                  </Swiper>
+                  </div>
                 ) : (
                   <div className="col-span-full text-center py-10 bg-red-50 rounded-xl">
                     <p className="text-red-500 font-bold">Không thể tải danh sách tour. Vui lòng kiểm tra cấu hình Database.</p>
