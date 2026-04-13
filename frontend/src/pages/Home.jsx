@@ -18,8 +18,8 @@ export default function Home() {
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660537/f50bc47b-c8a4-47c8-a9b7-fb11cb93ef85.png",
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660520/114d660e-471d-4954-8332-26777eaf50ec.png",
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660549/44b90aab-1d42-445c-9796-1cc289b2b8dc.png",
-    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927125/99acc75f-21e6-458d-b2c1-32a5c9631627.png",
-    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927135/7ebf7030-7bb7-48a8-921b-09c8134bd27a.png"
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660570/704e81e0-1c66-4e10-ac2c-a4e1cd4950b0.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660589/e8697b2a-baa4-40cf-999c-aaa46f5253dd.png"
   ];
 
   const ABOUT_FOOD_IMAGES = [
@@ -46,7 +46,20 @@ export default function Home() {
         const apiUrl = import.meta.env.VITE_API_URL || '';
         const response = await fetch(`${apiUrl}/api/tours`, { signal: controller.signal });
         const data = await response.json();
-        setTours(data);
+        
+        // Sort tours: Signature first, then Plant-based, then others
+        const sortedTours = Array.isArray(data) ? [...data].sort((a, b) => {
+          const order = ['signature', 'plant-based', 'tailor-made', 'custom'];
+          const getOrderIndex = (title) => {
+            if (!title) return 99;
+            const lowerTitle = title.toLowerCase();
+            const index = order.findIndex(keyword => lowerTitle.includes(keyword));
+            return index === -1 ? 90 : index; // 90 for other tours, 99 for unknown
+          };
+          return getOrderIndex(a.title) - getOrderIndex(b.title);
+        }) : [];
+
+        setTours(sortedTours);
       } catch (error) {
         console.error("Error fetching tours:", error);
       } finally {
@@ -62,8 +75,8 @@ export default function Home() {
     <div className="min-h-screen">
       <Helmet>
         <title>Taste&Talk Saigon | Authentic Street Food Tours in Ho Chi Minh City</title>
-        <meta name="description" content="Experience the best street food in Saigon with local guides. Join Taste & Talk Saigon for authentic culinary adventures, hidden gems, and real stories of Vietnam." />
-        <meta name="keywords" content="saigon street food tour, ho chi minh city food tour, authentic vietnamese food, local foodie friends, taste and talk saigon" />
+        <meta name="description" content="Experience the best street food in Saigon with local guides. Join Taste&Talk Saigon for authentic culinary adventures, hidden gems, and real stories of Vietnam." />
+        <meta name="keywords" content="saigon street food tour, ho chi minh city food tour, authentic vietnamese food, local foodie friends, tasteandtalk saigon" />
         <link rel="canonical" href="https://tntsaigonfoodtour.com" />
         
         <script type="application/ld+json">
@@ -71,7 +84,7 @@ export default function Home() {
             {
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Taste & Talk Saigon",
+              "name": "Taste&Talk Saigon",
               "url": "https://tntsaigonfoodtour.com",
               "logo": "https://tntsaigonfoodtour.com/logo.png",
               "sameAs": [
@@ -183,7 +196,7 @@ export default function Home() {
             
             <div className="mt-2 text-center">
               <a 
-                href="https://www.google.com/maps/place/Taste%26Talk+Saigon/@10.8680824,106.6735198,17z/data=!3m1!4b1!4m6!3m5!1s0x27b1bca2b3dc29fb:0x99df8abd71400477!8m2!3d10.8680824!4d106.6735198!16s%2Fg%2F11z2t73v26?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" 
+                href="https://www.google.com/maps/search/?api=1&query=Taste+and+Talk+Saigon+Food+Tour" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-brand-orange font-bold hover:underline text-sm md:text-base"
@@ -217,7 +230,7 @@ export default function Home() {
                         <div className="text-white/80 text-lg leading-relaxed space-y-4">
                           <h3 className="text-brand-yellow font-bold text-xl">The Evolution: From the Driver’s Seat to Leading the Way</h3>
                           <p>
-                            The name Taste&Talk wasn’t born in a boardroom; it was born on the back of motorbikes and over steaming bowls of street noodles. Three years ago, we started at the very beginning—not as business owners, but as local drivers working for tour companies. We spent countless nights navigating the city's chaotic traffic, learning every hidden shortcut, and ensuring the safety of every guest behind our backs.
+                            The name Taste & Talk wasn’t born in a boardroom; it was born on the back of motorbikes and over steaming bowls of street noodles. Three years ago, we started at the very beginning—not as business owners, but as local drivers working for tour companies. We spent countless nights navigating the city's chaotic traffic, learning every hidden shortcut, and ensuring the safety of every guest behind our backs.
                           </p>
                           <p>
                             Through those thousands of kilometers, we didn't just drive; we listened. We moved from being drivers to lead guides, and finally, to creating our own vision. We saw what travelers truly craved: not just a ride, but a genuine connection. Over the last 3 years, we have had the incredible privilege of hosting over 3,000 travelers from every corner of the globe. Today, we take that accumulated expertise—from the grit of the streets to the leadership of a team—to offer you something far more than a standard tour.
@@ -227,7 +240,7 @@ export default function Home() {
                         <div className="text-white/80 text-lg leading-relaxed space-y-4">
                           <h3 className="text-brand-yellow font-bold text-xl">Our Philosophy: The Magic of Connection</h3>
                           <p>
-                            At Taste&Talk, we believe that food tastes better when it’s seasoned with laughter and authentic conversation. To us, this has never been just about the food. It’s about the "Real Saigon"—the one you won't find in glossy brochures.
+                            At Taste & Talk, we believe that food tastes better when it’s seasoned with laughter and authentic conversation. To us, this has never been just about the food. It’s about the "Real Saigon"—the one you won't find in glossy brochures.
                           </p>
                           <ul className="space-y-4 pl-4 border-l-2 border-brand-yellow/30">
                             <li>
@@ -327,7 +340,7 @@ export default function Home() {
                       <div className="text-white/80 text-lg leading-relaxed space-y-4">
                         <h3 className="text-brand-yellow font-bold text-xl">Young, Wild, and Full of Flavor</h3>
                         <p>
-                          When you ride with Taste&Talk, you are joining a group of friends who are bursting with energy and a love for life. We bring the high-octane spirit of a 20-something Saigonese to every corner we turn. Our energy is contagious, our smiles are genuine, and our mission is to make sure you feel the vibrant "vibe" of our generation—the one that respects tradition but passionately embraces the future.
+                          When you ride with Taste & Talk, you are joining a group of friends who are bursting with energy and a love for life. We bring the high-octane spirit of a 20-something Saigonese to every corner we turn. Our energy is contagious, our smiles are genuine, and our mission is to make sure you feel the vibrant "vibe" of our generation—the one that respects tradition but passionately embraces the future.
                         </p>
                       </div>
 
