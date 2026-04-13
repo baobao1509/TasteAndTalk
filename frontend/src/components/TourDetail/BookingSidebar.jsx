@@ -13,7 +13,7 @@ export default function BookingSidebar({ tour, bookingBoxRef }) {
         <div className="space-y-4">
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Availability</span>
-            <span className="font-bold text-green-600">Daily</span>
+            <span className="font-bold text-green-600">After 3PM</span>
           </div>
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Language</span>
@@ -21,12 +21,12 @@ export default function BookingSidebar({ tour, bookingBoxRef }) {
           </div>
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Transport</span>
-            <span className="font-bold">Motorbike / Walk</span>
+            <span className="font-bold">Motorbike</span>
           </div>
         </div>
 
         <a 
-          href={`https://wa.me/84123456789?text=Hi! I want to book the ${tour.title}`}
+          href={`https://wa.me/84858207201?text=Hi! I want to book the ${tour.title}`}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full bg-green-500 text-white py-5 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-green-600 transition-all shadow-xl shadow-green-100"

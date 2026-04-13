@@ -83,6 +83,8 @@ export default function TourDetail() {
     setOpenAccordion(openAccordion === id ? null : id);
   };
 
+  const isCustomTour = tour.isCustom || tour.title?.toLowerCase().includes('custom');
+
   return (
     <div className="min-h-screen pb-24">
       <Helmet>
@@ -95,22 +97,31 @@ export default function TourDetail() {
       </Helmet>
       <TourHero tour={tour} />
 
-      <div className="max-w-7xl mx-auto px-4 mt-12 grid lg:grid-cols-3 gap-12">
+      <div className={`max-w-7xl mx-auto px-4 ${isCustomTour ? 'mt-6' : 'mt-12'} grid lg:grid-cols-3 gap-12`}>
         {/* Left Content */}
-        <div className="lg:col-span-2 space-y-16">
-          <TourOverview description={tour.description} />
-          <FoodItems items={tour.foodItems} />
-          <TourItinerary 
-            itinerary={tour.itinerary} 
-            openAccordion={openAccordion} 
-            setOpenAccordion={setOpenAccordion} 
+        <div className="lg:col-span-2 space-y-12">
+          <TourOverview 
+            description={tour.description} 
+            duration={tour.duration} 
+            isCustom={isCustomTour} 
           />
-          <VisualJourney itinerary={tour.itinerary} />
-          <TourPolicies 
-            tour={tour} 
-            openAccordion={openAccordion} 
-            toggleAccordion={toggleAccordion} 
-          />
+          
+          {!isCustomTour && (
+            <>
+              <FoodItems items={tour.foodItems} />
+              <TourItinerary 
+                itinerary={tour.itinerary} 
+                openAccordion={openAccordion} 
+                setOpenAccordion={setOpenAccordion} 
+              />
+              <VisualJourney itinerary={tour.itinerary} />
+              <TourPolicies 
+                tour={tour} 
+                openAccordion={openAccordion} 
+                toggleAccordion={toggleAccordion} 
+              />
+            </>
+          )}
         </div>
 
         {/* Right Sidebar - Booking */}
@@ -118,26 +129,27 @@ export default function TourDetail() {
       </div>
 
       {/* Google Reviews - Outside the grid for better mobile ordering */}
-      <section id="reviews" className="pt-16 mt-16 border-t border-black/5">
-        <div className="bg-brand-yellow/5 rounded-[3rem] p-8 md:p-12 border border-brand-yellow/10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <img src="https://www.google.com/favicon.ico" alt="Google" className="w-6 h-6" />
-                <h2 className="text-3xl font-display font-bold">Google Reviews</h2>
-              </div>
-              <p className="text-brand-brown/60">What our guests are saying about this tour</p>
-            </div>
-            <div className="flex items-center justify-center">
-              <TrustindexBadge />
+      <section id="reviews" className="pt-8 md:pt-16 mt-8 md:mt-16 border-t border-black/5">
+        <div className="bg-brand-yellow/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 border border-brand-yellow/10">
+          <div className="flex flex-col items-center text-center gap-6 mb-8 md:mb-12">
+            <div className="text-center mb-10 md:mb-16 px-4">
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-brand-dark tracking-tight">
+                <span className="inline-block text-left">
+                  <span className="block md:inline">They tasted,</span>
+                  <span className="block md:inline md:ml-4 ml-12 mt-1 md:mt-0">They talked</span>
+                </span>
+              </h2>
+              <p className="text-brand-brown/60 max-w-2xl mx-auto text-base md:text-lg mb-8 leading-relaxed">
+                Real feedback from travelers who have explored the streets of Saigon with us.
+              </p>
             </div>
           </div>
           
           <GoogleReviews placeId="ChIJaX_6666666666666666" />
           
-          <div className="mt-12 text-center">
+          <div className="mt-8 md:mt-12 text-center">
             <a 
-              href="https://www.google.com/maps" 
+              href="https://www.google.com/maps/place/Taste%26Talk+Saigon/@10.8680824,106.6735198,17z/data=!3m1!4b1!4m6!3m5!1s0x27b1bca2b3dc29fb:0x99df8abd71400477!8m2!3d10.8680824!4d106.6735198!16s%2Fg%2F11z2t73v26?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-brand-brown/60 hover:text-brand-orange font-bold text-sm transition-colors"
@@ -159,7 +171,7 @@ export default function TourDetail() {
             className="fixed bottom-8 right-8 z-40 lg:hidden"
           >
             <motion.a
-              href={`https://wa.me/84123456789?text=Hi! I want to book the ${tour.title}`}
+              href={`https://wa.me/84858207201?text=Hi! I want to book the ${tour.title}`}
               target="_blank"
               rel="noopener noreferrer"
               animate={{ 
@@ -170,10 +182,10 @@ export default function TourDetail() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="flex items-center gap-3 px-6 py-4 bg-green-500 text-white rounded-full shadow-2xl shadow-green-500/40"
+              className="flex items-center gap-3 px-6 py-3 bg-green-500 text-white rounded-full shadow-2xl shadow-green-500/40"
             >
-              <Send size={24} />
-              <span className="font-bold whitespace-nowrap">Book via WhatsApp</span>
+              <Send size={20} />
+              <span className="font-bold whitespace-nowrap text-sm">Book via WhatsApp</span>
             </motion.a>
           </motion.div>
         )}

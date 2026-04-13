@@ -7,7 +7,6 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
-import seedTours from "./config/seed.js";
 import tourRoutes from "./routes/tourRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 
@@ -30,11 +29,6 @@ async function startServer() {
   // Connect to Database
   await connectDB();
   
-  // Seed Database (Optional, only if empty)
-  if (process.env.MONGODB_URI) {
-    await seedTours();
-  }
-
   // Middleware
   app.use(cors());
   app.use(express.json());

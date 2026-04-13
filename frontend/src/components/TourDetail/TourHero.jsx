@@ -11,7 +11,7 @@ export default function TourHero({ tour }) {
       
       <div className="absolute top-32 left-4 right-4">
         <div className="max-w-7xl mx-auto">
-          <Link to="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors">
+          <Link to="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-40 transition-colors">
             <ArrowLeft size={20} /> Back to Tours
           </Link>
           <motion.h1 
@@ -23,8 +23,6 @@ export default function TourHero({ tour }) {
           </motion.h1>
           <div className="flex flex-wrap gap-6 text-white/90">
             <div className="flex items-center gap-2"><Clock size={20} className="text-brand-yellow" /> {tour.duration}</div>
-            <div className="flex items-center gap-2"><Users size={20} className="text-brand-yellow" /> {tour.groupSize}</div>
-            <div className="flex items-center gap-2"><Star size={20} className="text-brand-yellow fill-brand-yellow" /> {tour.rating} (Google Reviews)</div>
           </div>
         </div>
       </div>

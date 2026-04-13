@@ -9,7 +9,7 @@ export default function FoodItems({ items }) {
     <section className="bg-brand-yellow/10 p-8 rounded-[2.5rem]">
       <div className="flex items-center gap-3 mb-6">
         <Utensils className="text-brand-orange" />
-        <h2 className="text-2xl font-display font-bold">Must-try Dishes</h2>
+        <h2 className="text-2xl font-display font-bold">Menu</h2>
       </div>
       
       {/* Desktop View: Always show all */}

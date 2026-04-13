@@ -31,22 +31,26 @@ export default function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-2 md:py-3' : 'py-3 md:py-4 bg-transparent'
+        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-1 md:py-1.5' : 'py-2 md:py-3 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo & Brand */}
         <Link to="/" className="flex items-center gap-2 md:gap-3 group">
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div className={`transition-all duration-300 rounded-full overflow-hidden flex items-center justify-center group-hover:scale-110 ${
+            isScrolled ? 'w-10 h-10 md:w-14 md:h-14' : 'w-14 h-14 md:w-20 md:h-20'
+          }`}>
             <img 
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 100'%3E%3Cg transform='translate(10, 0)'%3E%3Crect x='0' y='30' width='12' height='5' rx='2.5' fill='%23FFD200'/%3E%3Crect x='8' y='40' width='15' height='5' rx='2.5' fill='%23FFD200'/%3E%3Crect x='4' y='50' width='18' height='5' rx='2.5' fill='%23FFD200'/%3E%3Crect x='12' y='60' width='12' height='5' rx='2.5' fill='%23FFD200'/%3E%3Cpath d='M70 50 L105 25 A40 40 0 1 0 105 75 Z' fill='%23FFD200' stroke='%235D3A1A' stroke-width='3'/%3E%3Ccircle cx='75' cy='35' r='4' fill='%235D3A1A'/%3E%3Cline x1='110' y1='35' x2='125' y2='25' stroke='%235D3A1A' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='115' y1='50' x2='130' y2='50' stroke='%235D3A1A' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='110' y1='65' x2='125' y2='75' stroke='%235D3A1A' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E" 
-              alt="Taste & Talk Logo" 
+              src="https://res.cloudinary.com/dk9kyhox7/image/upload/v1776047725/logo_rmbg_resize_ttqtso.png"
+              alt="Taste&Talk Logo" 
               className="w-full h-full object-contain"
               referrerPolicy="no-referrer"
             />
           </div>
-          <span className={`font-display font-bold text-base xs:text-lg sm:text-2xl transition-colors ${
-            isScrolled ? 'text-brand-brown' : 'text-white'
+          <span className={`font-display font-bold transition-all duration-300 ${
+            isScrolled 
+              ? 'text-brand-brown text-lg md:text-xl' 
+              : 'text-white text-xl md:text-2xl'
           }`}>
             Taste&Talk <span className="text-brand-orange">Saigon</span>
           </span>
@@ -66,7 +70,7 @@ export default function Navbar() {
             </a>
           ))}
           <a 
-            href="https://wa.me/84123456789"
+            href="https://wa.me/84858207201"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-orange text-white px-6 py-3 rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg shadow-brand-orange/20 flex items-center gap-2"
@@ -115,7 +119,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a 
-                href="https://wa.me/84123456789"
+                href="https://wa.me/84858207201"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.1 }}

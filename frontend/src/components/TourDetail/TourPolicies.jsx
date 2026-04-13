@@ -87,7 +87,7 @@ export default function TourPolicies({ tour, openAccordion, toggleAccordion }) {
         <ul className="space-y-4">
           {tour.policy.map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-brand-brown font-bold">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-brand-orange/10 text-brand-orange text-xs shrink-0">{i + 1}</span>
+              <div className="w-2 h-2 rounded-full bg-brand-yellow mt-2 shrink-0" />
               {item}
             </li>
           ))}

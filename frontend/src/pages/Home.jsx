@@ -1,14 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { motion, AnimatePresence } from 'motion/react';
 import Hero from '../components/Hero';
 import TourCard from '../components/TourCard';
 import GoogleReviews from '../components/GoogleReviews';
-import TrustindexBadge from '../components/TrustindexBadge';
 import { Phone, Instagram, Facebook, Youtube, MapPin, Mail, Star, Play } from 'lucide-react';
 
 export default function Home() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [isAboutExpanded, setIsAboutExpanded] = useState(false);
+  const [aboutImageIndex, setAboutImageIndex] = useState(0);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+
+  const ABOUT_TEAM_IMAGES = [
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660537/f50bc47b-c8a4-47c8-a9b7-fb11cb93ef85.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660520/114d660e-471d-4954-8332-26777eaf50ec.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660549/44b90aab-1d42-445c-9796-1cc289b2b8dc.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927125/99acc75f-21e6-458d-b2c1-32a5c9631627.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927135/7ebf7030-7bb7-48a8-921b-09c8134bd27a.png"
+  ];
+
+  const ABOUT_FOOD_IMAGES = [
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660832/1f699f24-6046-43a8-8c3c-b3f4761f4c75.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660838/ce25cff2-ad74-4ac2-b2ce-fbe08c4fb731.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775661848/a2249f2b-3e2e-45fa-8045-c726781152db.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660763/4dbc6654-1596-41b6-b03d-6501d69a63f4.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660770/b4e7d912-4f9d-4ab5-aeb2-d2418f24af3f.png"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAboutImageIndex((prev) => (prev + 1) % 5);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -22,8 +49,6 @@ export default function Home() {
         setTours(data);
       } catch (error) {
         console.error("Error fetching tours:", error);
-        // If it's a timeout or error, we might want to show some default data
-        // but for now we'll just let the UI handle the empty state or error
       } finally {
         clearTimeout(timeoutId);
         setLoading(false);
@@ -36,12 +61,11 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Taste & Talk Saigon | Authentic Street Food Tours in Ho Chi Minh City</title>
+        <title>Taste&Talk Saigon | Authentic Street Food Tours in Ho Chi Minh City</title>
         <meta name="description" content="Experience the best street food in Saigon with local guides. Join Taste & Talk Saigon for authentic culinary adventures, hidden gems, and real stories of Vietnam." />
         <meta name="keywords" content="saigon street food tour, ho chi minh city food tour, authentic vietnamese food, local foodie friends, taste and talk saigon" />
         <link rel="canonical" href="https://tntsaigonfoodtour.com" />
         
-        {/* Structured Data for Sitelinks and Brand */}
         <script type="application/ld+json">
           {`
             {
@@ -85,12 +109,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
               <div>
-                <span className="text-brand-orange font-bold tracking-widest uppercase text-sm">Our Experiences</span>
-                <h2 className="text-4xl md:text-5xl font-display font-bold mt-2">Most Popular Food Tours</h2>
+                <span className="text-brand-orange font-black tracking-[0.2em] text-2xl md:text-3xl">
+                  The Taste&Talk experience
+                </span>
               </div>
-              <p className="text-brand-brown/60 max-w-md">
-                Carefully curated experiences designed to give you a true taste of Saigon's culinary heritage.
-              </p>
             </div>
 
             {loading ? (
@@ -126,6 +148,7 @@ export default function Home() {
                         image={tour.heroImage || tour.image}
                         rating={tour.rating}
                         description={tour.description}
+                        isCustom={tour.isCustom}
                       />
                     ))}
                   </div>
@@ -140,31 +163,30 @@ export default function Home() {
         </section>
 
         {/* Google Reviews Section */}
-        <section id="reviews" className="relative pt-16 pb-16 px-4 bg-brand-yellow/5">
-          {/* Soft Gradient Transition from White to Yellow */}
-          <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
+        <section id="reviews" className="relative pt-12 md:pt-20 pb-12 md:pb-20 px-4 bg-brand-yellow/5">
+          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
           
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="text-center mb-1">
-              {/* Trustindex Badge (The small pill button) */}
-              <div className="mb-1">
-                <TrustindexBadge />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-2">What Our Foodies Say</h2>
-              <p className="text-brand-brown/60 max-w-2xl mx-auto text-sm md:text-base">
+          <div className="w-full relative z-10">
+            <div className="text-center mb-10 md:mb-16 px-4">
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-brand-dark tracking-tight">
+                <span className="inline-block text-left">
+                  <span className="block md:inline">They tasted,</span>
+                  <span className="block md:inline md:ml-4 ml-12 mt-1 md:mt-0">They talked</span>
+                </span>
+              </h2>
+              <p className="text-brand-brown/60 max-w-2xl mx-auto text-base md:text-lg mb-8 leading-relaxed">
                 Real feedback from travelers who have explored the streets of Saigon with us.
               </p>
             </div>
 
-            {/* Replace with your actual Google Place ID */}
             <GoogleReviews placeId="ChIJaX_6666666666666666" />
             
-            <div className="mt-12 text-center">
+            <div className="mt-2 text-center">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=Taste+and+Talk+Saigon+Food+Tour" 
+                href="https://www.google.com/maps/place/Taste%26Talk+Saigon/@10.8680824,106.6735198,17z/data=!3m1!4b1!4m6!3m5!1s0x27b1bca2b3dc29fb:0x99df8abd71400477!8m2!3d10.8680824!4d106.6735198!16s%2Fg%2F11z2t73v26?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-brand-orange font-bold hover:underline"
+                className="text-brand-orange font-bold hover:underline text-sm md:text-base"
               >
                 View all reviews on Google Maps
               </a>
@@ -174,68 +196,162 @@ export default function Home() {
 
         {/* About / Who We Are Section */}
         <section id="about" className="py-6 px-4">
-          <div className="max-w-7xl mx-auto bg-brand-dark text-white rounded-section p-6 md:p-10 relative overflow-hidden">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-screen-2xl mx-auto bg-brand-dark text-white rounded-section p-4 sm:p-6 md:p-12 lg:p-16 relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-24 items-start">
                 <div>
-                  <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">
-                    We are <span className="text-brand-yellow">Taste & Talk</span>, Your Local Foodie Friends
+                  <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
+                    The Story behind <span className="text-brand-yellow">Taste&Talk</span>
                   </h2>
-                  <p className="text-white/70 text-lg mb-8 leading-relaxed">
-                    Founded by a group of passionate locals who love Saigon and its food. Our mission is simple: to show you the side of Saigon that tourists rarely see. No tourist traps, just real food and real stories.
-                  </p>
-                  <div className="grid grid-cols-2 gap-8">
-                    <div>
-                      <p className="text-4xl font-bold text-brand-yellow mb-2">5k+</p>
-                      <p className="text-sm text-white/50 uppercase tracking-wider">Guests Hosted</p>
+                  
+                  <div className="space-y-6">
+                    <div className="text-white/80 text-lg leading-relaxed">
+                      <h3 className="text-brand-yellow font-bold text-xl mb-3">A Collective of Youth and Passion</h3>
+                      <p>
+                        Taste&Talk is a vibrant collective of dreamers, foodies, and urban explorers aged 20 to 25. Our team is a colorful tapestry of backgrounds: some of us are "Saigon originals," born and raised amidst the echoes of the city’s hidden alleys, while others arrived here for study and work, eventually falling head-over-heels for the city’s chaotic charm. Despite our different origins, we share a single, rhythmic heartbeat—an absolute obsession with Saigon’s local life and its culinary treasures.
+                      </p>
                     </div>
-                    <div>
-                      <p className="text-4xl font-bold text-brand-yellow mb-2">100%</p>
-                      <p className="text-sm text-white/50 uppercase tracking-wider">Local Guides</p>
-                    </div>
+
+                    {isAboutExpanded && (
+                      <div className="space-y-8 animate-in fade-in slide-in-from-top-4 duration-500">
+                        <div className="text-white/80 text-lg leading-relaxed space-y-4">
+                          <h3 className="text-brand-yellow font-bold text-xl">The Evolution: From the Driver’s Seat to Leading the Way</h3>
+                          <p>
+                            The name Taste&Talk wasn’t born in a boardroom; it was born on the back of motorbikes and over steaming bowls of street noodles. Three years ago, we started at the very beginning—not as business owners, but as local drivers working for tour companies. We spent countless nights navigating the city's chaotic traffic, learning every hidden shortcut, and ensuring the safety of every guest behind our backs.
+                          </p>
+                          <p>
+                            Through those thousands of kilometers, we didn't just drive; we listened. We moved from being drivers to lead guides, and finally, to creating our own vision. We saw what travelers truly craved: not just a ride, but a genuine connection. Over the last 3 years, we have had the incredible privilege of hosting over 3,000 travelers from every corner of the globe. Today, we take that accumulated expertise—from the grit of the streets to the leadership of a team—to offer you something far more than a standard tour.
+                          </p>
+                        </div>
+
+                        <div className="text-white/80 text-lg leading-relaxed space-y-4">
+                          <h3 className="text-brand-yellow font-bold text-xl">Our Philosophy: The Magic of Connection</h3>
+                          <p>
+                            At Taste&Talk, we believe that food tastes better when it’s seasoned with laughter and authentic conversation. To us, this has never been just about the food. It’s about the "Real Saigon"—the one you won't find in glossy brochures.
+                          </p>
+                          <ul className="space-y-4 pl-4 border-l-2 border-brand-yellow/30">
+                            <li>
+                              <strong className="text-white">The Authentic Taste:</strong> We lead you to the spots where we eat every day—places where the flavors are bold, raw, and haven't been "watered down" for tourists.
+                            </li>
+                            <li>
+                              <strong className="text-white">The Meaningful Talk:</strong> We believe every dish has a history and every street vendor has a soul. We share the untold stories behind the recipes and the genuine lives of the people who make this city breathe.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+
+                    {!isAboutExpanded && (
+                      <button 
+                        onClick={() => setIsAboutExpanded(true)}
+                        className="text-brand-yellow font-bold hover:underline flex items-center gap-2 text-lg group"
+                      >
+                        Read our full story
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="space-y-6">
-                  <div className="aspect-video rounded-3xl overflow-hidden bg-black relative group cursor-pointer shadow-2xl">
-                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Saigon Food Tour Video" className="w-full h-full object-cover opacity-60" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-brand-orange text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                        <Play size={24} fill="currentColor" />
+
+                <div className={`space-y-8 ${!isAboutExpanded ? 'lg:sticky lg:top-24' : ''}`}>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8">
+                    {/* Vertical Video Container */}
+                    <div className="aspect-[3/4] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden bg-black relative group shadow-2xl border-2 sm:border-4 border-white/5">
+                      {!isPlayingVideo ? (
+                        <div 
+                          className="w-full h-full cursor-pointer relative"
+                          onClick={() => setIsPlayingVideo(true)}
+                        >
+                          <img 
+                            src="https://img.youtube.com/vi/QRTJMS20KIk/maxresdefault.jpg" 
+                            alt="Saigon Food Tour Video" 
+                            className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" 
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-brand-orange text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                              <Play size={24} sm:size={28} fill="currentColor" />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <iframe
+                          className="w-full h-full"
+                          src="https://www.youtube.com/embed/QRTJMS20KIk?autoplay=1&rel=0"
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      )}
+                    </div>
+
+                    {/* Stacked Images Container */}
+                    <div className="flex flex-col gap-3 sm:gap-6 md:gap-8">
+                      <div className="flex-1 relative group rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden shadow-xl">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={aboutImageIndex}
+                            src={ABOUT_TEAM_IMAGES[aboutImageIndex]} 
+                            alt="Team" 
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 1 }}
+                            className="absolute inset-0 w-full h-full object-cover" 
+                            referrerPolicy="no-referrer"
+                          />
+                        </AnimatePresence>
+                        <div className="absolute inset-0 rounded-[1.5rem] sm:rounded-[2rem] border-2 border-brand-yellow/20 pointer-events-none"></div>
+                      </div>
+                      <div className="flex-1 relative group rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden shadow-xl">
+                        <AnimatePresence mode="wait">
+                          <motion.img 
+                            key={aboutImageIndex}
+                            src={ABOUT_FOOD_IMAGES[aboutImageIndex]} 
+                            alt="Food" 
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 1 }}
+                            className="absolute inset-0 w-full h-full object-cover" 
+                            referrerPolicy="no-referrer"
+                          />
+                        </AnimatePresence>
+                        <div className="absolute inset-0 rounded-[1.5rem] sm:rounded-[2rem] border-2 border-brand-orange/20 pointer-events-none"></div>
                       </div>
                     </div>
-                    <a 
-                      href="https://youtube.com/watch?v=dQw4w9WgXcQ" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="absolute inset-0"
-                    />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <img src="https://picsum.photos/seed/team1/400/500" alt="Team" className="rounded-3xl w-full h-48 object-cover rotate-2" />
-                    <img src="https://picsum.photos/seed/team2/400/500" alt="Food" className="rounded-3xl w-full h-48 object-cover -rotate-2" />
-                  </div>
+
+                  {isAboutExpanded && (
+                    <div className="space-y-8 animate-in fade-in slide-in-from-top-4 duration-500 pt-8 border-t border-white/10">
+                      <div className="text-white/80 text-lg leading-relaxed space-y-4">
+                        <h3 className="text-brand-yellow font-bold text-xl">Young, Wild, and Full of Flavor</h3>
+                        <p>
+                          When you ride with Taste&Talk, you are joining a group of friends who are bursting with energy and a love for life. We bring the high-octane spirit of a 20-something Saigonese to every corner we turn. Our energy is contagious, our smiles are genuine, and our mission is to make sure you feel the vibrant "vibe" of our generation—the one that respects tradition but passionately embraces the future.
+                        </p>
+                      </div>
+
+                      <div className="text-white/80 text-lg leading-relaxed space-y-4">
+                        <h3 className="text-brand-yellow font-bold text-xl">Not Just a Tour, but a Peer-to-Peer Friendship</h3>
+                        <p>
+                          We don’t want to be "guides and guests." We want to be your local friends. We talk about life, we share our perspectives, and we experience the city’s pulse together as equals. Whether we are sitting on tiny plastic stools in a rain-soaked alley or clinking beer glasses by the canal, the goal is always the same: to Taste the best of Saigon and Talk about the things that matter.
+                        </p>
+                      </div>
+
+                      <button 
+                        onClick={() => setIsAboutExpanded(false)}
+                        className="text-brand-yellow font-bold hover:underline flex items-center gap-2 text-lg"
+                      >
+                        Show less
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
+            </div>
             
-            {/* Background Accents */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/20 blur-[120px] rounded-full"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/10 blur-[120px] rounded-full"></div>
-          </div>
-        </section>
-
-        {/* Call to Action / WhatsApp */}
-        <section className="py-6 px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-display font-bold mb-2">Have Questions? Chat with Us!</h2>
-            <p className="text-brand-brown/60 mb-6 text-lg">
-              We're here to help you plan the perfect food adventure. Message us on WhatsApp for instant support.
-            </p>
-            <a 
-              href="https://wa.me/84123456789" 
-              className="inline-flex items-center gap-3 bg-green-500 text-white px-10 py-5 rounded-[2rem] font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-green-200"
-            >
-              <Phone size={24} />
-              Message on WhatsApp
-            </a>
+            <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/10 blur-[120px] rounded-full"></div>
+            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-yellow/5 blur-[120px] rounded-full"></div>
           </div>
         </section>
       </main>

@@ -19,10 +19,6 @@ export default function TourCard({ id, title, price, duration, groupSize, image,
           <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl font-bold text-brand-orange shadow-sm">
             {price}
           </div>
-          <div className="absolute bottom-4 left-4 flex items-center gap-1 bg-brand-dark/80 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-sm">
-            <Star size={14} className="fill-brand-yellow text-brand-yellow" />
-            <span>{rating}</span>
-          </div>
         </div>
         
         <div className="p-8 flex-grow flex flex-col">
@@ -35,10 +31,6 @@ export default function TourCard({ id, title, price, duration, groupSize, image,
             <div className="flex items-center gap-2 text-brand-brown/70 text-sm font-medium">
               <Clock size={16} />
               <span>{duration}</span>
-            </div>
-            <div className="flex items-center gap-2 text-brand-brown/70 text-sm font-medium">
-              <Users size={16} />
-              <span>{groupSize}</span>
             </div>
           </div>
           

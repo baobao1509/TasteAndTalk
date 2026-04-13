@@ -52,13 +52,13 @@ export default function TourItinerary({ itinerary, openAccordion, setOpenAccordi
                   >
                     <div className="pt-4 pb-2 space-y-4">
                       <div className="bg-brand-yellow/5 p-6 rounded-2xl border border-brand-yellow/10">
-                        <p className="text-brand-brown/80 leading-relaxed font-medium">
+                        <p className="text-brand-brown/80 leading-relaxed font-medium whitespace-pre-wrap">
                           {item.desc}
                         </p>
                       </div>
                       {/* Image - Shown on all devices now */}
                       {item.image && (
-                        <div className="w-full h-64 rounded-3xl overflow-hidden shadow-lg border border-black/5">
+                        <div className="w-full h-72 md:h-[450px] rounded-3xl overflow-hidden shadow-lg border border-black/5">
                           <img src={item.image} alt={item.activity} className="w-full h-full object-cover" />
                         </div>
                       )}
