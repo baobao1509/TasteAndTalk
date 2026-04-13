@@ -131,11 +131,10 @@ export default function TourDetail() {
       {/* Google Reviews - Outside the grid for better mobile ordering */}
       <section id="reviews" className="pt-8 md:pt-16 mt-8 md:mt-16 border-t border-black/5">
         <div className="bg-brand-yellow/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 border border-brand-yellow/10">
-          <div className="flex flex-col items-center text-center gap-6 mb-8 md:mb-12">
-            <div className="text-center mb-10 md:mb-16 px-4">
+                      <div className="text-center mb-10 md:mb-16 px-4">
               <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-brand-dark tracking-tight">
                 <span className="inline-block text-left">
-                  <span className="block md:inline">They tasted</span>
+                  <span className="block md:inline">They tasted<span className="hidden md:inline">,</span></span>
                   <span className="block md:inline md:ml-4 ml-12 mt-1 md:mt-0">They talked</span>
                 </span>
               </h2>
@@ -143,7 +142,6 @@ export default function TourDetail() {
                 Real feedback from travelers who have explored the streets of Saigon with us.
               </p>
             </div>
-          </div>
           
           <GoogleReviews placeId="ChIJaX_6666666666666666" />
           

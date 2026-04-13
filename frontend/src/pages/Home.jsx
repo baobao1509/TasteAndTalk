@@ -170,7 +170,7 @@ export default function Home() {
             <div className="text-center mb-10 md:mb-16 px-4">
               <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-brand-dark tracking-tight">
                 <span className="inline-block text-left">
-                  <span className="block md:inline">They tasted</span>
+                  <span className="block md:inline">They tasted<span className="hidden md:inline">,</span></span>
                   <span className="block md:inline md:ml-4 ml-12 mt-1 md:mt-0">They talked</span>
                 </span>
               </h2>
