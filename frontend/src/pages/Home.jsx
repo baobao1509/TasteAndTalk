@@ -18,8 +18,8 @@ export default function Home() {
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660537/f50bc47b-c8a4-47c8-a9b7-fb11cb93ef85.png",
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660520/114d660e-471d-4954-8332-26777eaf50ec.png",
     "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660549/44b90aab-1d42-445c-9796-1cc289b2b8dc.png",
-    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660570/704e81e0-1c66-4e10-ac2c-a4e1cd4950b0.png",
-    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775660589/e8697b2a-baa4-40cf-999c-aaa46f5253dd.png"
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927125/99acc75f-21e6-458d-b2c1-32a5c9631627.png",
+    "https://res.cloudinary.com/dk9kyhox7/image/upload/v1775927135/7ebf7030-7bb7-48a8-921b-09c8134bd27a.png"
   ];
 
   const ABOUT_FOOD_IMAGES = [
