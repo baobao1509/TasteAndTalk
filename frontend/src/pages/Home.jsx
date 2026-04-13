@@ -196,12 +196,12 @@ export default function Home() {
             
             <div className="mt-2 text-center">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=Taste+and+Talk+Saigon+Food+Tour" 
+                href="https://www.google.com/maps/search/?api=1&query=Taste%26Talk+Saigon" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-brand-orange font-bold hover:underline text-sm md:text-base"
+                className="text-brand-orange font-bold hover:underline text-lg"
               >
-                View all reviews on Google Maps
+                Read more reviews on Google Maps
               </a>
             </div>
           </div>

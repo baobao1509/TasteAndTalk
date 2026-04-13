@@ -14,8 +14,8 @@ export default function BookingSidebar({ tour, bookingBoxRef }) {
         <div className="space-y-4">
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Availability</span>
-            <span className={`font-bold ${isCustomTour ? 'text-green-600' : 'text-green-600'}`}>
-              {isCustomTour ? 'Flexible' : 'Daily'}
+            <span className={`font-bold ${isCustomTour ? 'text-green-600  ' : 'text-green-600'}`}>
+              {isCustomTour ? 'Flexible' : 'After 3 PM'}
             </span>
           </div>
           <div className="flex items-center justify-between py-3 border-b border-black/5">

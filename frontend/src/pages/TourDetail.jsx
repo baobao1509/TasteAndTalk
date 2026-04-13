@@ -145,16 +145,16 @@ export default function TourDetail() {
           
           <GoogleReviews placeId="ChIJaX_6666666666666666" />
           
-          <div className="mt-8 md:mt-12 text-center">
-            <a 
-              href="https://www.google.com/maps/place/Taste%26Talk+Saigon/@10.8680824,106.6735198,17z/data=!3m1!4b1!4m6!3m5!1s0x27b1bca2b3dc29fb:0x99df8abd71400477!8m2!3d10.8680824!4d106.6735198!16s%2Fg%2F11z2t73v26?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-brand-brown/60 hover:text-brand-orange font-bold text-sm transition-colors"
-            >
-              View all reviews on Google Maps
-            </a>
-          </div>
+            <div className="mt-2 text-center">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Taste%26Talk+Saigon" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-brand-orange font-bold hover:underline text-lg"
+              >
+                Read more reviews on Google Maps
+              </a>
+            </div>
         </div>
       </section>
 

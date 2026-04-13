@@ -170,7 +170,7 @@
 //     </div>
 //   );
 // }
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -337,7 +337,7 @@ function DesktopCard({ review, onReadFull }) {
             onClick={() => onReadFull(review)}
             className="text-[#1a73e8] font-bold text-base mt-3 hover:underline block"
           >
-            Read full
+            Read more
           </button>
         </div>
       </div>
@@ -393,7 +393,7 @@ function MobileCard({ review, onReadFull }) {
             onClick={() => onReadFull(review)}
             className="text-[#1a73e8] font-bold text-sm mt-2 hover:underline block"
           >
-            Read full
+            Read more
           </button>
         </div>
       </div>
@@ -408,6 +408,17 @@ function MobileCard({ review, onReadFull }) {
 export default function GoogleReviews() {
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedReview, setSelectedReview] = useState(null);
+
+  useEffect(() => {
+    if (selectedReview) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedReview]);
 
   return (
     <div className="pt-4 md:pt-10 pb-4 px-4 md:px-6 overflow-hidden">
