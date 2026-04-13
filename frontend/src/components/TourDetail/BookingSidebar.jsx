@@ -2,6 +2,7 @@ import React from 'react';
 import { Send } from 'lucide-react';
 
 export default function BookingSidebar({ tour, bookingBoxRef }) {
+  const isCustomTour = tour.isCustom || tour.title?.toLowerCase().includes('tailor-made journey');
   return (
     <div className="lg:col-span-1 order-last">
       <div ref={bookingBoxRef} className="sticky top-32 glass-card rounded-[2.5rem] p-8 space-y-8 shadow-xl border border-white/50">
@@ -13,7 +14,9 @@ export default function BookingSidebar({ tour, bookingBoxRef }) {
         <div className="space-y-4">
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Availability</span>
-            <span className="font-bold text-green-600">After 3PM</span>
+            <span className={`font-bold ${isCustomTour ? 'text-green-600' : 'text-green-600'}`}>
+              {isCustomTour ? 'Flexible' : 'Daily'}
+            </span>
           </div>
           <div className="flex items-center justify-between py-3 border-b border-black/5">
             <span className="text-brand-brown/60">Language</span>
