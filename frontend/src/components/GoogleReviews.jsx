@@ -192,6 +192,7 @@ const getAvatarColor = (name) => {
 };
 
 const REVIEWS = [
+  { id: 18, author: "Elisa Kaganer", rating: 5, text: "We had the best time with Dan and Hillary on their food tour. Delicious food and an opportunity to see many different parts of Saigon with the company of two great guides. Their English is excellent and they are both very friendly and helpful - even assisting me to book a bus ticket for travel the following day. I’d definitely recommend this tour!!!", date: "1 days ago" },
   { id: 14, author: "עדי ג'ובני", rating: 5, text: "Great experience! 😊 The food tour was very interesting and delicious, everything was perfectly organized. Very worth it — thank you for a wonderful night!", date: "4 days ago" },
   { 
     id: 1, 
