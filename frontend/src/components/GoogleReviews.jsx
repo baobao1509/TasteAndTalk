@@ -192,6 +192,7 @@ const getAvatarColor = (name) => {
 };
 
 const REVIEWS = [
+   { id: 20, author: "Maya Kretchmer", rating: 5, text: "Amazing food tour! I really enjoyed the food and the company :) I took the vegetarian tour and everything I tasted was truly great. Dan was attentive to what I wanted to try and even offered to buy me snacks for my flight. In my opinion there was a good attention to details, like providing hand sanitizer and checking in with my huger level from time to time. I did a lot of food tours in vietnam and this was definitely one of my favorites. Thank you Dan!" },
    { id: 19, author: "Adi Malhan", rating: 5, text: "The food was really good and Hillary was an amazing guide!" },
   { id: 18, author: "Elisa Kaganer", rating: 5, text: "We had the best time with Dan and Hillary on their food tour. Delicious food and an opportunity to see many different parts of Saigon with the company of two great guides. Their English is excellent and they are both very friendly and helpful - even assisting me to book a bus ticket for travel the following day. I’d definitely recommend this tour!!!", date: "1 days ago",image:"https://res.cloudinary.com/dk9kyhox7/image/upload/v1776571300/ae593f3e-bf78-4eb6-bb6b-08c165ecad5d.png" },
   { id: 14, author: "עדי ג'ובני", rating: 5, text: "Great experience! 😊 The food tour was very interesting and delicious, everything was perfectly organized. Very worth it — thank you for a wonderful night!", date: "4 days ago" },

@@ -123,7 +123,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
               <div>
                 <span className="text-brand-orange font-black tracking-[0.2em] text-2xl md:text-3xl">
-                  The Taste&Talk experience
+                  The Taste&Talk experiences
                 </span>
               </div>
             </div>
