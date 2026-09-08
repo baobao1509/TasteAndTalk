@@ -88,9 +88,9 @@ export default function TourDetail() {
   return (
     <div className="min-h-screen pb-24">
       <Helmet>
-        <title>{`${tour.title} | Taste & Talk Saigon`}</title>
+        <title>{`${tour.title} | Taste&Talk Saigon`}</title>
         <meta name="description" content={tour.description?.substring(0, 160) || "Join our authentic street food tour in Saigon."} />
-        <meta property="og:title" content={`${tour.title} | Taste & Talk Saigon`} />
+        <meta property="og:title" content={`${tour.title} | Taste&Talk Saigon`} />
         <meta property="og:description" content={tour.description?.substring(0, 160)} />
         <meta property="og:image" content={tour.heroImage || tour.image} />
         <link rel="canonical" href={`https://tntsaigonfoodtour.com/tour/${id}`} />
@@ -100,15 +100,17 @@ export default function TourDetail() {
       <div className={`max-w-7xl mx-auto px-4 ${isCustomTour ? 'mt-6' : 'mt-12'} grid lg:grid-cols-3 gap-12`}>
         {/* Left Content */}
         <div className="lg:col-span-2 space-y-12">
-          <TourOverview 
-            description={tour.description} 
-            duration={tour.duration} 
-            isCustom={isCustomTour} 
-          />
+          {isCustomTour && (
+            <TourOverview 
+              description={tour.description} 
+              duration={tour.duration} 
+              isCustom={isCustomTour} 
+            />
+          )}
           
           {!isCustomTour && (
             <>
-              <FoodItems items={tour.foodItems} />
+              <FoodItems items={tour.foodItems} tourId={tour.id || id} tour={tour} />
               <TourItinerary 
                 itinerary={tour.itinerary} 
                 openAccordion={openAccordion} 
@@ -131,30 +133,28 @@ export default function TourDetail() {
       {/* Google Reviews - Outside the grid for better mobile ordering */}
       <section id="reviews" className="pt-8 md:pt-16 mt-8 md:mt-16 border-t border-black/5">
         <div className="bg-brand-yellow/5 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 border border-brand-yellow/10">
-                      <div className="text-center mb-10 md:mb-16 px-4">
-              <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-brand-dark tracking-tight">
-                <span className="inline-block text-left">
-                  <span className="block md:inline">They tasted<span className="hidden md:inline">,</span></span>
-                  <span className="block md:inline md:ml-4 ml-12 mt-1 md:mt-0">They talked</span>
-                </span>
-              </h2>
-              <p className="text-brand-brown/60 max-w-2xl mx-auto text-base md:text-lg mb-8 leading-relaxed">
-                Real feedback from travelers who have explored the streets of Saigon with us.
-              </p>
+          <div className="flex flex-col items-center text-center gap-6 mb-8 md:mb-12">
+            <div>
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <img src="https://www.google.com/favicon.ico" alt="Google" className="w-6 h-6" />
+                <h2 className="text-3xl font-display font-bold">Google Reviews</h2>
+              </div>
+              <p className="text-brand-brown/60">What our guests are saying about this tour</p>
             </div>
+          </div>
           
           <GoogleReviews placeId="ChIJaX_6666666666666666" />
           
-            <div className="mt-2 text-center">
-              <a 
-                href="https://www.google.com/maps/search/?api=1&query=Taste%26Talk+Saigon" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-brand-orange font-bold hover:underline text-lg"
-              >
-                Read more reviews on Google Maps
-              </a>
-            </div>
+          <div className="mt-8 md:mt-12 text-center">
+            <a 
+              href="https://www.google.com/maps" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-brand-brown/60 hover:text-brand-orange font-bold text-sm transition-colors"
+            >
+              View all reviews on Google Maps
+            </a>
+          </div>
         </div>
       </section>
 
